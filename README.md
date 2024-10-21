@@ -16,10 +16,10 @@ None
 
 The demos use the following libraries:
 
-* LVGL
-* PDM 
-* Arduino_BMI270_BMM150
-* Arduino_GigaDisplay
+* LVGL (verion 9.1.0)
+* PDM (built-in library)
+* Arduino_BMI270_BMM150 (version 1.2.0)
+* Arduino_GigaDisplay (version 1.0.2)
 
 You can use the Arduino Library Manager to install the necessary libraries if not already installed
 Arduino IDE->Sketch->Include LIbrary->Manage Libraries 

@@ -19,7 +19,7 @@
 #include <Arduino_GigaDisplay.h>
 #include "Arduino_BMI270_BMM150.h"
 
-#include "lvgl.h"
+#include <lvgl.h>
 #include <PDM.h>
 
 BoschSensorClass imu(Wire1);
@@ -181,10 +181,11 @@ void DisplaySetup() {
 
   // Add Data Series
   pdm_series = lv_chart_add_series(chart_pdm, lv_palette_main(LV_PALETTE_RED), LV_CHART_AXIS_PRIMARY_Y);
+  int32_t * pdm_y_points = lv_chart_get_y_array(chart_pdm, pdm_series);
 
   for( idx=0; idx<PDM_NUMBER_SAMPLES; idx++ )
   {
-    pdm_series->y_points[idx] = (lv_coord_t)*(dataPDM+idx);
+    pdm_y_points[idx] = (lv_coord_t)*(dataPDM+idx);
   }
 
   lv_chart_refresh(chart_pdm); /*Required after direct set*/ 
@@ -305,9 +306,11 @@ static void Display_MICChartRefresh( void )
   uint16_t idx = 0u;
   short *dataPDM = sampleBuffer;
 
+  int32_t * pdm_y_points = lv_chart_get_y_array(chart_pdm, pdm_series);
+
   for( idx=0; idx<PDM_NUMBER_SAMPLES; idx++ )
   {
-    pdm_series->y_points[idx] = (lv_coord_t)*(dataPDM+idx);  
+    pdm_y_points[idx] = (lv_coord_t)*(dataPDM+idx);  
   }
 
   lv_chart_refresh(chart_pdm); /*Required after direct set*/
